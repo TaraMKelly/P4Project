@@ -51,3 +51,4 @@ end
 gem "active_model_serializers", "~> 0.10.12"
 
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'nokogiri'
