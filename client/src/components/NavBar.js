@@ -1,7 +1,8 @@
-// import { Link } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
 
-function NavBar({setUser}) {
+function NavBar({ setUser }) {
 
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
@@ -14,16 +15,19 @@ function NavBar({setUser}) {
   return (
     <header>
       <Logo>Alcoholics not-Anonymous</Logo>
-      {/* <div>
-        <Link to="/">Home</Link>
-      </div> */}
       <div>
         <button onClick={handleLogoutClick}>Logout</button>
+      </div>
+      <div>
+        <nav>
+          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/search">Search</NavLink>
+          <NavLink to="/feed">Feed</NavLink>
+        </nav>
       </div>
     </header>
   );
 }
-
 const Logo = styled.h1`
   font-family: "Permanent Marker", cursive;
   font-size: 3rem;

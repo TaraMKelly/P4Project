@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Login from "./Login"
 // import { Switch, Route } from "react-router-dom";
-import Home from "./Home";
+import Main from './Main'
 import NavBar from "./NavBar";
 // import './App.css';
 
@@ -22,13 +22,7 @@ function App() {
   return (
     <>
       <NavBar setUser={setUser}/>
-      <main>
-          {/* <Switch>
-            <Route path="/"> */}
-              <Home />
-            {/* </Route>
-          </Switch> */}
-      </main>
+      <Main/>
     </>
   );
 }
