@@ -1,26 +1,41 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import UserCard from './UserCard'
+// import UserCard from './UserCard'
 import SearchBar from './SearchBar'
-import SearchedDrinkContainer from './SearchedDrinkContainer'
 import DrinksContainer from './DrinksContainer'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function Main() {
   const [searchValue, setSearchValue] = useState("")
+  const [drinks, setDrinks] = useState([])
+
+  useEffect(() => {
+      fetch('/drinks')
+      .then(response => response.json())
+      .then(data => setDrinks(data))
+  }, [])
+
+
+  const filteredDrinks = drinks.filter((drink) => {
+    return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
+})
+
+// const displayedPlants = plants.filter((plant) => {
+//   return plant.name.toLowerCase().includes(searchTerm.toLowerCase());
+// });
   return (
     <>
       {/* <h1>Hello</h1> */}
       <Router>
         <Switch>
-          <Route path="/home">
+          {/* <Route path="/home">
             <UserCard />
-          </Route>
+          </Route> */}
           <Route path="/search">
             <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
-            <SearchedDrinkContainer />
+            <DrinksContainer drinks={filteredDrinks} searchValue={searchValue} />
           </Route>
           <Route path="/feed">
-            <DrinksContainer />
+            <DrinksContainer drinks={drinks} setDrinks={setDrinks}/>
           </Route>
         </Switch>
       </Router>

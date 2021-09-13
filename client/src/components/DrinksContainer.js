@@ -3,14 +3,7 @@ import { BrowserRouter as Route } from 'react-router-dom';
 import DrinksList from './DrinksList'
 import DrinkForm from './DrinkForm'
 
-function DrinksContainer(){
-
-    const [drinks, setDrinks] = useState([])
-    useEffect(() => {
-        fetch('/drinks')
-        .then(response => response.json())
-        .then(data => setDrinks(data))
-    }, [])
+function DrinksContainer({drinks, setDrinks}){
 
     return (
         <div>
