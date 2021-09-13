@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { Button, Input, FormField, Label } from "../styles";
+import { Button, Input, FormField, Label, Error } from "../styles";
 
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -34,42 +34,44 @@ function SignUpForm({ onLogin }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* <FormField> */}
-        <label htmlFor="username">Username</label>
-        <input
+      <FormField>
+        <Label htmlFor="username">Username</Label>
+        <Input
           type="text"
           id="username"
           autoComplete="off"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-      {/* </FormField> */}
-      {/* <FormField> */}
-        <label htmlFor="password">Password</label>
-        <input
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Password</Label>
+        <Input
           type="password"
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
         />
-      {/* // </FormField> */}
-      {/* <FormField> */}
-        <label htmlFor="password">Password Confirmation</label>
-        <input
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Password Confirmation</Label>
+        <Input
           type="password"
           id="password_confirmation"
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           autoComplete="current-password"
         />
-        <button type="submit">Sign Up</button>
-      {/* // </FormField> */}
-      {/* <FormField> */}
-        {/* {errors.map((err) => (
+      </FormField>
+      <FormField>
+        <Button type="submit">Sign Up</Button>
+      </FormField>
+      <FormField> 
+        {errors.map((err) => (
           <Error key={err}>{err}</Error>
-        ))} */}
-      {/* </FormField> */}
+        ))}
+      </FormField>
     </form>
   );
 }

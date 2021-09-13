@@ -3,7 +3,7 @@ import Login from "./Login"
 // import { Switch, Route } from "react-router-dom";
 import Main from './Main'
 import NavBar from "./NavBar";
-// import './App.css';
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,5 +25,24 @@ function App() {
       <Main/>
     </>
   );
+
+  // return (
+  //   <>
+  //       {!user ? (
+  //         <Switch>
+  //           <Route path="/login">
+  //             <Login setUser={setUser} />
+  //           </Route>
+  //         </Switch>
+  //       ) : (
+  //         <Switch>
+  //           <Route path="/">
+  //             <NavBar user={user} setUser={setUser} />
+  //             <Main />
+  //           </Route>
+  //         </Switch>
+  //       )}
+  //   </>
+  // );
 }
 export default App;

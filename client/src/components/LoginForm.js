@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { Button, Input, FormField, Label } from "../styles";
+import { Button, Input, FormField, Label, Error } from "../styles";
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -29,32 +29,34 @@ function LoginForm({ onLogin }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        {/* <FormField> */}
-          <label htmlFor="username">Username</label>
-          <input
+        <FormField>
+          <Label htmlFor="username">Username</Label>
+          <Input
             type="text"
             id="username"
             autoComplete="off"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-        {/* </FormField> */}
-        {/* <FormField> */}
-          <label htmlFor="password">Password</label>
-          <input
+        </FormField>
+        <FormField>
+          <Label htmlFor="password">Password</Label>
+          <Input
             type="password"
             id="password"
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Login</button>
-        {/* </FormField> */}
-        {/* <FormField>
-        {errors.map((err) => (
-          <Error key={err}>{err}</Error>
-        ))}
-      </FormField> */}
+        </FormField>
+        <FormField>
+          <Button variant="fill" color="primary" type="submit">Login</Button>
+        </FormField>
+        <FormField>
+          {errors.map((err) => (
+            <Error key={err}>{err}</Error>
+          ))}
+        </FormField>
       </form>
     </div>
   );
