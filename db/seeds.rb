@@ -2,8 +2,8 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
 puts "Creating users..."
-User.create(username: "Roger", password_digest: "password")
-User.create(username: "Martha", password_digest: "12345")
+User.create(username: "Roger", password: "password")
+User.create(username: "Martha", password: "12345")
 
 puts "Creating drinks..."
 Drink.create(name:"Big Gulp" , ingredients:"8 shots of vodka, 1 olive" , instructions: "Mix all the shots in a stein and add the olive. Drink all at once." , img_url:"https://image.shutterstock.com/image-photo/young-happy-business-man-holding-260nw-716612023.jpg", custom: true)
@@ -14,7 +14,7 @@ Drink.create(name:"Water" , ingredients:"water" , instructions: "Have some water
 puts "Creating userdrinks..."
 UserDrink.create(drink_id: 1, user_id: 2)
 UserDrink.create(drink_id: 3, user_id: 2)
-UserDrink.create(drink_id: 3, user_id: 1)
+UserDrink.create(drink_id: 2, user_id: 1)
 UserDrink.create(drink_id: 4, user_id: 1)
 
 puts "done seeding!..."
