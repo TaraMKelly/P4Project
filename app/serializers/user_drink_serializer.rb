@@ -1,5 +1,5 @@
 class UserDrinkSerializer < ActiveModel::Serializer
   attributes :id
-  has_one :drinks
-  has_one :users
+  has_one :drink
+  has_one :user
 end

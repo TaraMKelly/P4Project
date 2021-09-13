@@ -1,4 +1,4 @@
 class UserDrink < ApplicationRecord
-  belongs_to :drinks
-  belongs_to :users
+  belongs_to :drink
+  belongs_to :user
 end

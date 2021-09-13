@@ -1,5 +1,5 @@
 class Drink < ApplicationRecord
-    has_many :user_drinks
+    has_many :user_drinks, dependent: :destroy
     has_many :users, through: :user_drink
 
     validates :name, presence: true, uniqueness: true
