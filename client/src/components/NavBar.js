@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function NavBar({setUser}) {
@@ -14,9 +14,9 @@ function NavBar({setUser}) {
   return (
     <header>
       <Logo>Alcoholics not-Anonymous</Logo>
-      <div>
+      {/* <div>
         <Link to="/">Home</Link>
-      </div>
+      </div> */}
       <div>
         <button onClick={handleLogoutClick}>Logout</button>
       </div>
