@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
-import { Menu } from 'semantic-ui-react'
+import { Menu, Button } from 'semantic-ui-react'
 
 function NavBar({ setUser }) {
 
@@ -27,8 +27,8 @@ function NavBar({ setUser }) {
           <Menu.Item>
             <NavLink to="/feed">Feed</NavLink>
           </Menu.Item>
-          <Menu.Item>
-            <button onClick={handleLogoutClick}>Logout</button>
+          <Menu.Item position="right">
+            <Button onClick={handleLogoutClick}>Logout</Button>
           </Menu.Item>
         </Menu>
       </div>
