@@ -3,14 +3,14 @@ import { BrowserRouter as Route } from 'react-router-dom';
 import DrinksList from './DrinksList'
 import DrinkForm from './DrinkForm'
 
-function DrinksContainer({drinks, setDrinks}){
+function DrinksContainer({deletedDrink, drinks, setDrinks}){
 
     return (
         <div>
             <Route exact path="/drinks/new">
               <DrinkForm drinks={drinks} setDrinks={setDrinks} />
             </Route>
-            <DrinksList drinks = {drinks} setDrinks = {setDrinks}/>
+            <DrinksList deletedDrink = {deletedDrink} drinks = {drinks} setDrinks = {setDrinks}/>
         </div>
       );
 
