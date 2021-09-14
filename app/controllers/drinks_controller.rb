@@ -12,7 +12,7 @@ class DrinksController < ApplicationController
     end
   
     def create
-      drink = Drink.create(drink_params)
+      drink = Drink.create!(drink_params)
       render json: drink, status: :created
     end
   
@@ -35,8 +35,8 @@ class DrinksController < ApplicationController
       Drink.find(params[:id])
     end
   
-    def spice_params
-      params.permit(:name, :ingredients, :instructions, :img_url)
+    def drink_params
+      params.permit(:name, :ingredients, :instructions, :img_url, :create)
     end
   
     def render_not_found_response

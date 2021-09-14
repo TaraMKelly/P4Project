@@ -6,7 +6,7 @@ import NewDrinkButton from './NewDrinkButton';
 import { Container, Button, Grid } from 'semantic-ui-react'
 
 
-function DrinksContainer({ drinks, setDrinks }) {
+function DrinksContainer({deletedDrink, drinks, setDrinks }) {
 
 
   return (
@@ -16,7 +16,7 @@ function DrinksContainer({ drinks, setDrinks }) {
       <Route exact path="/drinks/new">
         <DrinkForm drinks={drinks} setDrinks={setDrinks} />
       </Route>
-          <DrinksList drinks={drinks} setDrinks={setDrinks} />
+          <DrinksList deletedDrink = {deletedDrink} drinks = {drinks} setDrinks = {setDrinks}/>
       </Container>
     </>
   );

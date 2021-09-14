@@ -9,7 +9,7 @@ function Main() {
   const [drinks, setDrinks] = useState([])
 
   useEffect(() => {
-      fetch('/drinks')
+    fetch('/drinks')
       .then(response => response.json())
       .then(data => setDrinks(data))
   }, [])
@@ -17,14 +17,18 @@ function Main() {
 
   const filteredDrinks = drinks.filter((drink) => {
     return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
-})
+  })
+  //   if (drink.name) {
+  //     return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
+  //   }
+  // })
 
-// const displayedPlants = plants.filter((plant) => {
-//   return plant.name.toLowerCase().includes(searchTerm.toLowerCase());
-// });
+  function deletedDrink(deletedDrinkId) {
+    setDrinks(drinks.filter((drink) => drink.id !== deletedDrinkId))
+  }
+
   return (
     <>
-      {/* <h1>Hello</h1> */}
       <Router>
         <Switch>
           {/* <Route path="/home">
@@ -35,7 +39,7 @@ function Main() {
             <DrinksContainer drinks={filteredDrinks} searchValue={searchValue} />
           </Route>
           <Route path="/feed">
-            <DrinksContainer drinks={drinks} setDrinks={setDrinks}/>
+            <DrinksContainer deletedDrink = {deletedDrink} drinks={drinks} setDrinks={setDrinks}/>
           </Route>
         </Switch>
       </Router>

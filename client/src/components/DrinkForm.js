@@ -3,10 +3,11 @@ import {useHistory} from 'react-router-dom'
 
 
 function DrinkForm({drinks, setDrinks}){
-    const history = useHistory();
+    let history = useHistory();
     const [addDrink, setAddDrink] = useState({
         name:'',
         ingredients: '',
+        instructions: '',
         img_url: '',
         custom: true
     })
@@ -16,7 +17,7 @@ function DrinkForm({drinks, setDrinks}){
         let value = e.target.value
         setAddDrink({
             ...addDrink,
-            [key]: value
+            [key]: value,
         })
     }
 
@@ -24,7 +25,7 @@ function DrinkForm({drinks, setDrinks}){
         e.preventDefault();
         fetch('/drinks', {
         method: "POST",
-        header: {
+        headers: {
             "Content-Type": "application/json",
             Accept: "application/json"
         },
@@ -36,17 +37,19 @@ function DrinkForm({drinks, setDrinks}){
             setAddDrink({
                 name:'',
                 ingredients: '',
+                instructions: '',
                 img_url: '',
                 custom: true
             })
-            history.push('/drinks')
+            history.push('/feed')
         })
     }
     return (
     <form onSubmit ={handleFormSubmit}>
         <input type= "text" name = "name" value = {addDrink.name} placeholder = "name" onChange={handleNewDrink}></input>
         <input type= "text" name = "ingredients" value = {addDrink.ingredients} placeholder = "ingredients" onChange={handleNewDrink}></input>
-        <input type= "text" name = "name" value = {addDrink.img_url} placeholder = "image url" onChange={handleNewDrink}></input> 
+        <input type= "text" name = "instructions" value = {addDrink.instructions} placeholder = "instructions" onChange={handleNewDrink}></input> 
+        <input type= "text" name = "img_url" value = {addDrink.img_url} placeholder = "image url" onChange={handleNewDrink}></input> 
         <div>
             <button type="submit" className="submit-input">Add New Drink</button>
         </div>
