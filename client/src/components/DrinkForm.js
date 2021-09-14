@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 
 
 function DrinkForm({drinks, setDrinks}){
-
+    const history = useHistory();
     const [addDrink, setAddDrink] = useState({
         name:'',
         ingredients: '',

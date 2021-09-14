@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
-import DrinksList from '/DrinksList'
-import DrinkForm from '/DrinkForm'
+import { BrowserRouter as Route } from 'react-router-dom';
+import DrinksList from './DrinksList'
+import DrinkForm from './DrinkForm'
 
 function DrinksContainer({drinks, setDrinks}){
 
