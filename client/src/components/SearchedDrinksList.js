@@ -4,7 +4,12 @@ function SearchedDrinksList({drinks, setDrinks}){
 
     console.log(drinks)
     const allDrinks = drinks.map((drink) => {
-        return <DrinkCard key = {drink.idDrink} name = {drink.strDrink} ingredients = {drink.strIngredient1} img_url = {drink.strDrinkThumb} custom = {false}/>
+        return (
+        <>
+        <DrinkCard key = {drink.idDrink} name = {drink.strDrink} ingredients = {drink.strIngredient1} img_url = {drink.strDrinkThumb} custom = {false}/>
+        <button>button</button>
+        </>
+        )
     })
     return (
         <div>
