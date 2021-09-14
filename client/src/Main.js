@@ -8,6 +8,13 @@ import {useState} from 'react'
 
 function Main() {
   const [searchValue, setSearchValue] = "";
+  const [drinks, setDrinks] = useState([])
+    useEffect(() => {
+        fetch('/drinks')
+        .then(response => response.json())
+        .then(data => setDrinks(data))
+    }, [])
+
   return (
     <Router>
       <Switch>
@@ -16,10 +23,10 @@ function Main() {
         </Route>
         <Route path="/search">
           <SearchBar searchValue = {searchValue} setSearchValue = {setSearchValue}/>
-          <SearchedDrinkContainer/>
+          <SearchedDrinkContainer drinks = {drinks} searchValue = {searchValue}/>
         </Route>
         <Route path="/feed">
-          <DrinksContainer />
+          <DrinksContainer drinks = {drinks} setDrinks = {setDrinks}/>
         </Route>
       </Switch>
     </Router>
