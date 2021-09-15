@@ -22,23 +22,27 @@ function Main() {
 // const displayedPlants = plants.filter((plant) => {
 //   return plant.name.toLowerCase().includes(searchTerm.toLowerCase());
 // });
+
   return (
     <>
       {/* <h1>Hello</h1> */}
-      <Router>
-        <Switch>
-          {/* <Route path="/home">
-            <UserCard />
-          </Route> */}
-          <Route path="/search">
-            <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
-            <DrinksContainer drinks={filteredDrinks} searchValue={searchValue} />
-          </Route>
-          <Route path="/feed">
-            <DrinksContainer drinks={drinks} setDrinks={setDrinks}/>
-          </Route>
+      <Switch>
+            {/* <Route path="/home">
+              <UserCard />
+            </Route> */}
+            <Route exact path="/search">
+              <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
+            </Route>
+            <Route exact path="/feed">
+              <DrinksContainer deletedDrink = {deletedDrink} drinks={drinks} setDrinks={setDrinks}/>
+            </Route>
+            <Route exact path="/create">
+              <DrinksContainer drinks={filteredDrinks} searchValue={searchValue} />
+            </Route>
+            <Route path="*">
+              <h1>404 not found</h1>
+            </Route>
         </Switch>
-      </Router>
     </>
   );
 }
