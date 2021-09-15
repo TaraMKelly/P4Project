@@ -3,6 +3,8 @@ import { useState } from 'react'
 
 function DrinkCard({ setGetId, update, setUpdate, deletedDrink, id, updatedDrink, drinks, setDrinks, name, ingredients, instructions, img_url, custom }) {
     const obj = {id: id, name: name, ingredients: ingredients, instructions: instructions, img_url: img_url, custom: custom}
+    const [clicked, setClicked] = useState(true)
+    const [userData, setUserData] = useState('')
     console.log(obj, "obj")
     function handleUpdateDrink(event){
         setGetId(id)
@@ -10,9 +12,21 @@ function DrinkCard({ setGetId, update, setUpdate, deletedDrink, id, updatedDrink
     }
 
     function handleImageClick(event){
-        fetch(`/drinks/${event.target.parentElement.name}`)
-        .then(response => response.json())
-        .then(data => console.log(data))
+        setClicked(clicked => !clicked)
+        if(clicked){
+            fetch(`/drinks/${event.target.attributes.name.nodeValue}`)
+            .then(response => response.json())
+            .then(data => {
+                let usernames = ''
+                data.users.map((user) => {
+                    usernames += user.username + " "
+                })
+                setUserData([...userData, usernames])
+            })
+        }
+        else{
+            setUserData("")
+        }
     }
 
     function handleDeleteDrink(event) {
@@ -37,11 +51,13 @@ function DrinkCard({ setGetId, update, setUpdate, deletedDrink, id, updatedDrink
                     floated="right"
                     src={img_url}
                     alt={name}
+                    name = {id}
                     onClick = {handleImageClick}
                 />
                 <Card.Header>{name}</Card.Header>
                 <Card.Description><b>Ingredients:</b> {ingredients}</Card.Description>
                 <Card.Description><b>Instructions:</b> {instructions}</Card.Description>
+                <Card.Description><b>Users:</b>{userData}</Card.Description>
             </Card.Content>
             <Card.Content extra>
                 <a>

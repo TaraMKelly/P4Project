@@ -1,10 +1,9 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
 
 function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
     let history = useHistory();
-    console.log(update, "update")
     const [addDrink, setAddDrink] = useState({
         name:'',
         ingredients: '',
@@ -13,27 +12,25 @@ function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
         custom: true
     })
     
+    let updated = update
 
-    function fillOut(){
-        if(update){
+    useEffect(() => {
+        if(updated){
             const clickedDrink = drinks.find(drink => drink.id === getId)
-            console.log(clickedDrink)
-            addDrink.name = clickedDrink.name
-            addDrink.ingredients = clickedDrink.ingredients
-            addDrink.instructions = clickedDrink.instructions
-            addDrink.img_url = clickedDrink.img_url
+            console.log(clickedDrink, "clicked")
+            setAddDrink(clickedDrink)
         }
-    }
+    }, [])
 
 
     function handleNewDrink(e){
-            {fillOut()}
             let key = e.target.name
             let value = e.target.value
             setAddDrink({
                 ...addDrink,
                 [key]: value,
             })
+            updated = !updated
     }
 
     function handleFormSubmit(e){
@@ -87,7 +84,7 @@ function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
         }
     }
     return (
-    <form onSubmit ={handleFormSubmit}>
+    <form onSubmit ={handleFormSubmit}> 
         <input type= "text" name = "name" value = {addDrink.name} placeholder = "name" onChange={handleNewDrink}></input>
         <input type= "text" name = "ingredients" value = {addDrink.ingredients} placeholder = "ingredients" onChange={handleNewDrink}></input>
         <input type= "text" name = "instructions" value = {addDrink.instructions} placeholder = "instructions" onChange={handleNewDrink}></input> 
@@ -95,6 +92,7 @@ function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
         <div>
             <button type="submit" className="submit-input">Submit</button>
         </div>
+       
     </form>)
 }
 

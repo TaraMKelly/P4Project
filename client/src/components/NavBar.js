@@ -27,6 +27,9 @@ function NavBar({ setUser }) {
           <Menu.Item>
             <NavLink to="/feed">Feed</NavLink>
           </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/create">Create a Drink</NavLink>
+          </Menu.Item>
           <Menu.Item position="right">
             <Button onClick={handleLogoutClick}>Logout</Button>
           </Menu.Item>
