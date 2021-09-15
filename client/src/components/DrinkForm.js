@@ -3,13 +3,14 @@ import {useHistory} from 'react-router-dom'
 
 
 function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
+    console.log(getId, "id")
     let history = useHistory();
     const [addDrink, setAddDrink] = useState({
         name:'',
         ingredients: '',
         instructions: '',
         img_url: '',
-        custom: true
+        custom: true,
     })
     
     let updated = update
@@ -55,8 +56,21 @@ function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
                         img_url: '',
                         custom: true
                     })
+                    console.log(data)
                 history.push('/feed')
-            })
+                fetch('/user_drinks', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: JSON.stringify({
+                        user_id: getId,
+                        drink_id: data.id
+                    })})
+                    .then(response => response.json())
+                    .then(console.log(data))
+                })
         }
         else{
             fetch(`/drinks/${getId}`, {

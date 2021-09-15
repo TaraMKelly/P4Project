@@ -19,9 +19,17 @@ function Main() {
       .then(data => setDrinks(data))
   }, [])
 
+  useEffect(() => {
+    fetch('/me')
+    .then(response => response.json())
+    .then(data => setGetId(data.id))
+  }, [])
+
   console.log(drinks)
   const filteredDrinks = drinks.filter((drink) => {
-    return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
+    if(drink.name){
+      return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
+    }
   })
   //   if (drink.name) {
   //     return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())

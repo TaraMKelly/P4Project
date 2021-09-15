@@ -31,7 +31,7 @@ function DrinkCard({ setGetId, update, setUpdate, deletedDrink, id, updatedDrink
 
     function handleDeleteDrink(event) {
         console.log(event)
-        fetch(`/drinks/${event.target.parentElement.name}`, {
+        fetch(`/drinks/${event.target.attributes.name.nodeValue}`, {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',

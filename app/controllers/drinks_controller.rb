@@ -38,7 +38,7 @@ class DrinksController < ApplicationController
     end
   
     def drink_params
-      params.permit(:name, :ingredients, :instructions, :img_url, :custom)
+      params.permit(:name, :ingredients, :instructions, :img_url, :custom, :users)
     end
   
     def render_not_found_response
