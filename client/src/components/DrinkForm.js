@@ -17,7 +17,6 @@ function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
     useEffect(() => {
         if(updated){
             const clickedDrink = drinks.find(drink => drink.id === getId)
-            console.log(clickedDrink, "clicked")
             setAddDrink(clickedDrink)
         }
     }, [])
