@@ -3,7 +3,6 @@ import { Grid } from 'semantic-ui-react'
 
 function DrinksList({drinks, setDrinks, deletedDrink}){
 
-    console.log(drinks)
     const allDrinks = drinks.map((drink) => {
         return <DrinkCard deletedDrink = {deletedDrink} drinks = {drinks} setDrinks = {setDrinks} id = {drink.id} key = {drink.id} name = {drink.name} ingredients = {drink.ingredients} instructions = {drink.instructions} img_url = {drink.img_url} custom = {drink.custom}/>
     })
@@ -19,4 +18,4 @@ function DrinksList({drinks, setDrinks, deletedDrink}){
     )
 }
 
-export default DrinksList;
+export default DrinksList

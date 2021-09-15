@@ -5,7 +5,7 @@ function DrinkCard({ deletedDrink, id, drinks, setDrinks, name, ingredients, ins
 
     function handleDeleteDrink(event) {
         console.log(event)
-        fetch(`/drinks/${event.target.name}`, {
+        fetch(`/drinks/${event.target.parentElement.name}`, {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',
@@ -36,7 +36,7 @@ function DrinkCard({ deletedDrink, id, drinks, setDrinks, name, ingredients, ins
                     0 likes
                 </a>
                 <a>
-                    <Button onClick ={handleDeleteDrink} icon>
+                    <Button name = {id} onClick ={handleDeleteDrink} icon>
                         <Icon name='delete' />
                     </Button>
                 </a>

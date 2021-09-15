@@ -8,13 +8,15 @@ function Main() {
   const [searchValue, setSearchValue] = useState("")
   const [drinks, setDrinks] = useState([])
 
+
+
   useEffect(() => {
     fetch('/drinks')
       .then(response => response.json())
       .then(data => setDrinks(data))
   }, [])
 
-
+  console.log(drinks)
   const filteredDrinks = drinks.filter((drink) => {
     return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
   })
