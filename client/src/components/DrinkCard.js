@@ -3,6 +3,16 @@ import { useState } from 'react'
 
 function DrinkCard({ setGetId, update, setUpdate, deletedDrink, id, updatedDrink, drinks, setDrinks, name, ingredients, instructions, img_url, custom }) {
     const obj = {id: id, name: name, ingredients: ingredients, instructions: instructions, img_url: img_url, custom: custom}
+    const [likes, setLikes] = useState(0)
+
+    const addLikedDrink = {
+        name: name,
+        ingredients: ingredients,
+        instructions: instructions,
+        img_url: img_url,
+        custom: true
+    }
+
     console.log(obj, "obj")
     function handleUpdateDrink(event){
         setGetId(id)
@@ -29,6 +39,26 @@ function DrinkCard({ setGetId, update, setUpdate, deletedDrink, id, updatedDrink
             }
         });
     }
+
+    function handleLikeClick(event){
+        incrementLikes()
+        // fetch('/drinks', {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         Accept: "application/json"
+        //     },
+        //     body: JSON.stringify(addLikedDrink)
+        //     }).then(response => response.json())
+        //     .then(data => {console.log(data)})
+        //     console.log("POSTING!!!!!")
+    }
+
+
+
+    function incrementLikes() {
+        setLikes(likes + 1)
+    }
     return (
         <Card>
             <Card.Content>
@@ -45,8 +75,8 @@ function DrinkCard({ setGetId, update, setUpdate, deletedDrink, id, updatedDrink
             </Card.Content>
             <Card.Content extra>
                 <a>
-                    <Button circular icon='heart' />
-                    0 likes
+                    <Button circular icon='heart' onClick ={handleLikeClick}/>
+                    {`${likes} likes`}
                 </a>
                 <a>
                     <Button name = {id} onClick ={handleDeleteDrink} icon>
