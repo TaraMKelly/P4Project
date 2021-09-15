@@ -7,6 +7,8 @@ import { useState, useEffect } from 'react'
 function Main() {
   const [searchValue, setSearchValue] = useState("")
   const [drinks, setDrinks] = useState([])
+  const [update, setUpdate] = useState(false)
+  const [getId, setGetId] = useState();
 
 
 
@@ -29,6 +31,11 @@ function Main() {
     setDrinks(drinks.filter((drink) => drink.id !== deletedDrinkId))
   }
 
+  function updatedDrink(drinkId, updatedDrink){
+    drinks[drinkId] = updatedDrink
+    setDrinks(drinks)
+  }
+
   return (
     <>
       <Router>
@@ -41,7 +48,7 @@ function Main() {
             <DrinksContainer drinks={filteredDrinks} searchValue={searchValue} />
           </Route>
           <Route path="/feed">
-            <DrinksContainer deletedDrink = {deletedDrink} drinks={drinks} setDrinks={setDrinks}/>
+            <DrinksContainer getId = {getId} setGetId = {setGetId} updatedDrink = {updatedDrink} setUpdate = {setUpdate} update = {update} deletedDrink = {deletedDrink} drinks={drinks} setDrinks={setDrinks}/>
           </Route>
         </Switch>
       </Router>
