@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :users
   resources :user_drinks
   resources :drinks
   post '/signup', to: 'users#create'

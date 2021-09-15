@@ -27,6 +27,7 @@ function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
 
 
     function handleNewDrink(e){
+            {fillOut()}
             let key = e.target.name
             let value = e.target.value
             setAddDrink({
@@ -94,7 +95,6 @@ function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
         <div>
             <button type="submit" className="submit-input">Submit</button>
         </div>
-        {fillOut()}
     </form>)
 }
 
