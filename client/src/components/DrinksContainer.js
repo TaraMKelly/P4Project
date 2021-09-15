@@ -6,14 +6,14 @@ import DrinkForm from './DrinkForm'
 import { Container, Button, Grid } from 'semantic-ui-react'
 
 
-function DrinksContainer({ getId, setGetId, setUpdate, update, deletedDrink, updatedDrink,  drinks, setDrinks }) {
+function DrinksContainer({ getDrinkId, setGetDrinkId, getId, setGetId, setUpdate, update, deletedDrink, updatedDrink,  drinks, setDrinks }) {
 
 
   return (
     <>
       <Container>
-         { update ? <DrinkForm getId = {getId} setUpdate = {setUpdate} update = {update} drinks={drinks} setDrinks={setDrinks} /> : ""}
-          <DrinksList setGetId = {setGetId} setUpdate = {setUpdate} update = {update} deletedDrink = {deletedDrink} updatedDrink = {updatedDrink} drinks = {drinks} setDrinks = {setDrinks}/>
+         { update ? <DrinkForm getDrinkId = {getDrinkId} setGetDrinkId = {setGetDrinkId} getId = {getId} setUpdate = {setUpdate} update = {update} drinks={drinks} setDrinks={setDrinks} /> : ""}
+          <DrinksList getDrinkId = {getDrinkId} setGetDrinkId = {setGetDrinkId} getId = {getId} setGetId = {setGetId} setUpdate = {setUpdate} update = {update} deletedDrink = {deletedDrink} updatedDrink = {updatedDrink} drinks = {drinks} setDrinks = {setDrinks}/>
       </Container>
     </>
   );

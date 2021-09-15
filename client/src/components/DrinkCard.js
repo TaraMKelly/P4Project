@@ -1,15 +1,28 @@
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-function DrinkCard({ setGetId, update, setUpdate, deletedDrink, id, updatedDrink, drinks, setDrinks, name, ingredients, instructions, img_url, custom }) {
+function DrinkCard({ getDrinkId, setGetDrinkId, getId, setGetId, update, setUpdate, deletedDrink, id, updatedDrink, drinks, setDrinks, name, ingredients, instructions, img_url, custom }) {
     const obj = {id: id, name: name, ingredients: ingredients, instructions: instructions, img_url: img_url, custom: custom}
     const [clicked, setClicked] = useState(true)
     const [userData, setUserData] = useState('')
     console.log(obj, "obj")
+    const [canUpdate, setCanUpdate] = useState(false)
     function handleUpdateDrink(event){
-        setGetId(id)
+        setGetDrinkId(event.target.attributes.name.nodeValue)
         setUpdate(true)
     }
+
+    useEffect(() => {
+        fetch(`/drinks/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            data.users.map((user) => {
+                if(user.id === getId){
+                    setCanUpdate(true)
+                }
+            })
+        })
+    }, [])
 
     function handleImageClick(event){
         setClicked(clicked => !clicked)
@@ -31,7 +44,7 @@ function DrinkCard({ setGetId, update, setUpdate, deletedDrink, id, updatedDrink
 
     function handleDeleteDrink(event) {
         console.log(event)
-        fetch(`/drinks/${event.target.parentElement.name}`, {
+        fetch(`/drinks/${event.target.attributes.name.nodeValue}`, {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',
@@ -68,10 +81,9 @@ function DrinkCard({ setGetId, update, setUpdate, deletedDrink, id, updatedDrink
                     <Button name = {id} onClick ={handleDeleteDrink} icon>
                         <Icon name='delete' />
                     </Button>
-
-                    <Button name = {id} onClick ={handleUpdateDrink} icon>
+                    {canUpdate ? <Button name = {id} onClick ={handleUpdateDrink} icon>
                         Update
-                    </Button>
+                    </Button> : ""}
                 </a>
                 {{custom} ? <Icon name='glass martini' /> : null}
             </Card.Content>

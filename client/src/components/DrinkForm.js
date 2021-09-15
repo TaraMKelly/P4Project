@@ -2,21 +2,27 @@ import {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
 
-function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
+function DrinkForm({setGetDrinkId, getDrinkId, getId, setUpdate, update, drinks, setDrinks}){
     let history = useHistory();
+    console.log(update)
     const [addDrink, setAddDrink] = useState({
         name:'',
         ingredients: '',
         instructions: '',
         img_url: '',
-        custom: true
+        custom: true,
     })
-    
     let updated = update
+
+    console.log(getDrinkId)
+
 
     useEffect(() => {
         if(updated){
-            const clickedDrink = drinks.find(drink => drink.id === getId)
+            console.log("hi")
+            console.log(getDrinkId)
+            const clickedDrink = drinks.find(drink => drink.id == getDrinkId)
+            console.log(clickedDrink, "clicked")
             setAddDrink(clickedDrink)
         }
     }, [])
@@ -54,11 +60,24 @@ function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
                         img_url: '',
                         custom: true
                     })
+                    console.log(data)
                 history.push('/feed')
-            })
+                fetch('/user_drinks', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: JSON.stringify({
+                        user_id: getId,
+                        drink_id: data.id
+                    })})
+                    .then(response => response.json())
+                    .then(console.log(data))
+                })
         }
         else{
-            fetch(`/drinks/${getId}`, {
+            fetch(`/drinks/${getDrinkId}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
