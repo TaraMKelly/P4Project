@@ -4,7 +4,11 @@ import { useState, useEffect } from 'react'
 import SearchBar from './SearchBar'
 import UserContainer from './UserContainer'
 import DrinkForm from './DrinkForm'
+<<<<<<< HEAD
 import DrinksContainer from './DrinksContainer'
+=======
+import UserContainer from './UserContainer';
+>>>>>>> added user container and card
 
 function Main() {
   const [searchValue, setSearchValue] = useState("")
