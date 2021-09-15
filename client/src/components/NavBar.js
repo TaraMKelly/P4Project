@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
+import { Menu, Button } from 'semantic-ui-react'
 
 function NavBar({ setUser }) {
 
@@ -14,16 +15,22 @@ function NavBar({ setUser }) {
 
   return (
     <header>
-      <Logo>Alcoholics not-Anonymous</Logo>
+      <Logo style={{textAlign: "center"}}>Alcoholics not-Anonymous</Logo>
       <div>
-        <button onClick={handleLogoutClick}>Logout</button>
-      </div>
-      <div>
-        <nav>
-          <NavLink to="/home">Home</NavLink>
-          <NavLink to="/search">Search</NavLink>
-          <NavLink to="/feed">Feed</NavLink>
-        </nav>
+        <Menu>
+          <Menu.Item> 
+            <NavLink to="/home">Home</NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/search">Search</NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/feed">Feed</NavLink>
+          </Menu.Item>
+          <Menu.Item position="right">
+            <Button onClick={handleLogoutClick}>Logout</Button>
+          </Menu.Item>
+        </Menu>
       </div>
     </header>
   );

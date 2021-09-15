@@ -3,6 +3,7 @@ import Login from "./Login"
 // import { Switch, Route } from "react-router-dom";
 import Main from './Main'
 import NavBar from "./NavBar";
+import 'semantic-ui-css/semantic.min.css'
 
 
 function App() {

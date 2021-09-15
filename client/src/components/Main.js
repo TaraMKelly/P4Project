@@ -11,27 +11,34 @@ function Main() {
 
 
   useEffect(() => {
-      fetch('/drinks')
+    fetch('/drinks')
       .then(response => response.json())
       .then(data => setDrinks(data))
   }, [])
 
   const filteredDrinks = drinks.filter((drink) => {
+<<<<<<< HEAD
     if(drink.name){
       drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
     }
   })
 
   function deletedDrink(deletedDrinkId){
+=======
+    return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
+  })
+  //   if (drink.name) {
+  //     return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
+  //   }
+  // })
+
+  function deletedDrink(deletedDrinkId) {
+>>>>>>> 6003a7b0063fb0e94328096c860495bba79da2f3
     setDrinks(drinks.filter((drink) => drink.id !== deletedDrinkId))
   }
 
-// const displayedPlants = plants.filter((plant) => {
-//   return plant.name.toLowerCase().includes(searchTerm.toLowerCase());
-// });
   return (
     <>
-      {/* <h1>Hello</h1> */}
       <Router>
         <Switch>
           {/* <Route path="/home">
