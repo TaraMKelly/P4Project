@@ -1,9 +1,5 @@
 import DrinkCard from "./DrinkCard"
-<<<<<<< HEAD
-import {useState} from 'react'
-=======
 import { Grid } from 'semantic-ui-react'
->>>>>>> 6003a7b0063fb0e94328096c860495bba79da2f3
 
 function DrinksList({drinks, setDrinks, deletedDrink}){
 

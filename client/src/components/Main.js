@@ -16,15 +16,8 @@ function Main() {
       .then(data => setDrinks(data))
   }, [])
 
+  console.log(drinks)
   const filteredDrinks = drinks.filter((drink) => {
-<<<<<<< HEAD
-    if(drink.name){
-      drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
-    }
-  })
-
-  function deletedDrink(deletedDrinkId){
-=======
     return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
   })
   //   if (drink.name) {
@@ -33,7 +26,6 @@ function Main() {
   // })
 
   function deletedDrink(deletedDrinkId) {
->>>>>>> 6003a7b0063fb0e94328096c860495bba79da2f3
     setDrinks(drinks.filter((drink) => drink.id !== deletedDrinkId))
   }
 
