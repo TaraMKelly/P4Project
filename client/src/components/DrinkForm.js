@@ -2,9 +2,9 @@ import {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
 
-function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
-    console.log(getId, "id")
+function DrinkForm({setGetDrinkId, getDrinkId, getId, setUpdate, update, drinks, setDrinks}){
     let history = useHistory();
+    console.log(update)
     const [addDrink, setAddDrink] = useState({
         name:'',
         ingredients: '',
@@ -12,12 +12,16 @@ function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
         img_url: '',
         custom: true,
     })
-    
     let updated = update
+
+    console.log(getDrinkId)
+
 
     useEffect(() => {
         if(updated){
-            const clickedDrink = drinks.find(drink => drink.id === getId)
+            console.log("hi")
+            console.log(getDrinkId)
+            const clickedDrink = drinks.find(drink => drink.id == getDrinkId)
             console.log(clickedDrink, "clicked")
             setAddDrink(clickedDrink)
         }
@@ -73,7 +77,7 @@ function DrinkForm({getId, setUpdate, update, drinks, setDrinks}){
                 })
         }
         else{
-            fetch(`/drinks/${getId}`, {
+            fetch(`/drinks/${getDrinkId}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
