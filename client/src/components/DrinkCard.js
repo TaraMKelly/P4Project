@@ -38,7 +38,7 @@ function DrinkCard({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, se
 
     function handleLikeClick(event) {
         event.preventDefault()
-        setLiked(liked => !liked)
+        // setLiked(liked => !liked)
         if(addLikedDrink.custom){
             fetch('/user_drinks', {
                 method: "POST",

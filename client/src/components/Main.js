@@ -51,7 +51,7 @@ function Main() {
   return (
     <>
       <Switch>
-        <Route exact path="/home">
+        <Route exact path="/">
           <UserContainer liked = {liked} setLiked = {setLiked} setGetDrinkId = {setGetDrinkId} setUpdate = {setUpdate} drinks = {drinks} setDrinks = {setDrinks}/>
         </Route>
 
