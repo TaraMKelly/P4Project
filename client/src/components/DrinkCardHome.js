@@ -2,7 +2,7 @@ import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import { useEffect, useState } from 'react'
 import {useHistory} from 'react-router-dom'
 
-function DrinkCard({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, setUpdate, deletedDrink, id, name, ingredients, instructions, img_url, custom }) {
+function DrinkCardHome({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, setUpdate, deletedDrink, id, name, ingredients, instructions, img_url, custom }) {
     const obj = { id: id, name: name, ingredients: ingredients, instructions: instructions, img_url: img_url, custom: custom }
     const [clicked, setClicked] = useState(true)
     const [userData, setUserData] = useState('')
@@ -32,6 +32,35 @@ function DrinkCard({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, se
     //         })
     // }, [getId])
 
+    function handleDeleteDrink(event){
+        event.preventDefault()
+        fetch(`http://localhost:3000/delete_user_drinks`, {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                drink_id: id
+            })
+        }).then(response => response.json())
+        .then(data => console.log(data))
+        // .then(response => response.json())
+        // .then(data => {
+        //     const index = data.findIndex(userDrink => userDrink.user.id === user.id && userDrink.drink.id === id)
+        //     console.log(index)
+        //     if(index > -1){
+        //         fetch(`http://localhost:3000/user_drinks/${index}`, {
+        //             method: 'DELETE',
+        //             headers: {
+        //                 "Content-Type": "application/json",
+        //                 Accept: "application/json"
+        //             }
+        //         })
+        //     }
+        // })
+    }
+
     function handleImageClick(event) {
         setClicked(clicked => !clicked)
         if (clicked) {
@@ -50,10 +79,6 @@ function DrinkCard({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, se
         }
     }
 
-    function handleDeleteDrink(e) {
-        console.log("hello")
-    }
-
     return (
         <Card>
             <Card.Content>
@@ -68,7 +93,7 @@ function DrinkCard({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, se
                 <Card.Header>{name}</Card.Header>
                 <Card.Description><b>Ingredients:</b> {ingredients}</Card.Description>
                 <Card.Description><b>Instructions:</b> {instructions}</Card.Description>
-                <button name={id} onClick={handleDeleteDrink} >
+                <button name={id }onClick={handleDeleteDrink} >
                         ❌
                     </button>
             </Card.Content>
@@ -77,4 +102,4 @@ function DrinkCard({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, se
 
 }
 
-export default DrinkCard
+export default DrinkCardHome
