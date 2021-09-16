@@ -2,42 +2,67 @@ import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import { useEffect, useState } from 'react'
 
 function DrinkCard({ getDrinkId, setGetDrinkId, getId, setGetId, update, setUpdate, deletedDrink, id, updatedDrink, drinks, setDrinks, name, ingredients, instructions, img_url, custom }) {
-    const obj = {id: id, name: name, ingredients: ingredients, instructions: instructions, img_url: img_url, custom: custom}
+    const obj = { id: id, name: name, ingredients: ingredients, instructions: instructions, img_url: img_url, custom: custom }
     const [clicked, setClicked] = useState(true)
     const [userData, setUserData] = useState('')
-    console.log(obj, "obj")
     const [canUpdate, setCanUpdate] = useState(false)
-    function handleUpdateDrink(event){
+    const [likes, setLikes] = useState(0)
+
+    const addLikedDrink = {
+        name: name,
+        ingredients: ingredients,
+        instructions: instructions,
+        img_url: img_url,
+        custom: true
+    }
+    function handleLikeClick(event) {
+        incrementLikes()
+        // fetch('/drinks', {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         Accept: "application/json"
+        //     },
+        //     body: JSON.stringify(addLikedDrink)
+        //     }).then(response => response.json())
+        //     .then(data => {console.log(data)})
+        //     console.log("POSTING!!!!!")
+    }
+    function incrementLikes() {
+        setLikes(likes + 1)
+    }
+
+    function handleUpdateDrink(event) {
         setGetDrinkId(event.target.attributes.name.nodeValue)
         setUpdate(true)
     }
 
     useEffect(() => {
         fetch(`/drinks/${id}`)
-        .then(response => response.json())
-        .then(data => {
-            data.users.map((user) => {
-                if(user.id === getId){
-                    setCanUpdate(true)
-                }
-            })
-        })
-    }, [])
-
-    function handleImageClick(event){
-        setClicked(clicked => !clicked)
-        if(clicked){
-            fetch(`/drinks/${event.target.attributes.name.nodeValue}`)
             .then(response => response.json())
             .then(data => {
-                let usernames = ''
                 data.users.map((user) => {
-                    usernames += user.username + " "
+                    if (user.id === getId) {
+                        return setCanUpdate(true)
+                    }
                 })
-                setUserData([...userData, usernames])
             })
+    }, [])
+
+    function handleImageClick(event) {
+        setClicked(clicked => !clicked)
+        if (clicked) {
+            fetch(`/drinks/${event.target.attributes.name.nodeValue}`)
+                .then(response => response.json())
+                .then(data => {
+                    let usernames = ''
+                    data.users.map((user) => {
+                        usernames += user.username + " "
+                    })
+                    setUserData([...userData, usernames])
+                })
         }
-        else{
+        else {
             setUserData("")
         }
     }
@@ -64,8 +89,8 @@ function DrinkCard({ getDrinkId, setGetDrinkId, getId, setGetId, update, setUpda
                     floated="right"
                     src={img_url}
                     alt={name}
-                    name = {id}
-                    onClick = {handleImageClick}
+                    name={id}
+                    onClick={handleImageClick}
                 />
                 <Card.Header>{name}</Card.Header>
                 <Card.Description><b>Ingredients:</b> {ingredients}</Card.Description>
@@ -74,18 +99,18 @@ function DrinkCard({ getDrinkId, setGetDrinkId, getId, setGetId, update, setUpda
             </Card.Content>
             <Card.Content extra>
                 <a>
-                    <Button circular icon='heart' />
-                    0 likes
+                    <Button circular icon='heart' onClick={handleLikeClick} />
+                    {`${likes} likes`}
                 </a>
                 <a>
-                    <Button name = {id} onClick ={handleDeleteDrink} icon>
+                    <Button name={id} onClick={handleDeleteDrink} icon>
                         <Icon name='delete' />
                     </Button>
-                    {canUpdate ? <Button name = {id} onClick ={handleUpdateDrink} icon>
+                    {canUpdate ? <Button name={id} onClick={handleUpdateDrink} icon>
                         Update
                     </Button> : ""}
                 </a>
-                {{custom} ? <Icon name='glass martini' /> : null}
+                {{ custom } ? <Icon name='glass martini' /> : null}
             </Card.Content>
         </Card>
     )
