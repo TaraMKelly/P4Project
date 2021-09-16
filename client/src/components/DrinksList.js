@@ -7,14 +7,11 @@ function DrinksList({getDrinkId, setGetDrinkId, getId, setGetId, update, setUpda
         return <DrinkCard getDrinkId = {getDrinkId} setGetDrinkId = {setGetDrinkId} getId = {getId} setGetId = {setGetId} setUpdate = {setUpdate} update = {update} updatedDrink = {updatedDrink} deletedDrink = {deletedDrink} drinks = {drinks} setDrinks = {setDrinks} id = {drink.id} key = {drink.id} name = {drink.name} ingredients = {drink.ingredients} instructions = {drink.instructions} img_url = {drink.img_url} custom = {drink.custom}/>
     })
     return (
-        <Grid
-            columns={4}
-            padded
-        >
-            <Grid.Column>
+
+            <>
                 {allDrinks}
-            </Grid.Column>
-        </Grid>
+            </>
+
     )
 }
 

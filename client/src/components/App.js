@@ -26,24 +26,5 @@ function App() {
       <Main/>
     </>
   );
-
-  // return (
-  //   <>
-  //       {!user ? (
-  //         <Switch>
-  //           <Route path="/login">
-  //             <Login setUser={setUser} />
-  //           </Route>
-  //         </Switch>
-  //       ) : (
-  //         <Switch>
-  //           <Route path="/">
-  //             <NavBar user={user} setUser={setUser} />
-  //             <Main />
-  //           </Route>
-  //         </Switch>
-  //       )}
-  //   </>
-  // );
 }
 export default App;
