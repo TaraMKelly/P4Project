@@ -2,10 +2,10 @@ import DrinksList from './DrinksList'
 import DrinkForm from './DrinkForm'
 import styled from "styled-components";
 import { Container } from 'semantic-ui-react'
+import { useState, useEffect } from 'react'
 
 
 function DrinksContainer({ liked, setLiked, getDrinkId, setGetDrinkId, getId, setGetId, setUpdate, update, deletedDrink, updatedDrink, drinks, setDrinks }) {
-
 
   return (
 
