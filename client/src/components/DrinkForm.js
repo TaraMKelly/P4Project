@@ -5,7 +5,16 @@ import {useHistory} from 'react-router-dom'
 function DrinkForm({setGetDrinkId, getDrinkId, getId, setUpdate, update, drinks, setDrinks}){
     let history = useHistory();
     console.log(update)
+    const [user, setUser] = useState([])
+
+    useEffect(() => {
+        fetch('/me')
+            .then(response => response.json())
+            .then(data => setUser(data))
+        }, [])
+
     const [addDrink, setAddDrink] = useState({
+        id: null,
         name:'',
         ingredients: '',
         instructions: '',
@@ -62,6 +71,7 @@ function DrinkForm({setGetDrinkId, getDrinkId, getId, setUpdate, update, drinks,
                     })
                     console.log(data)
                 history.push('/feed')
+                history.push('/home')
                 fetch('/user_drinks', {
                     method: "POST",
                     headers: {
@@ -69,7 +79,7 @@ function DrinkForm({setGetDrinkId, getDrinkId, getId, setUpdate, update, drinks,
                         Accept: "application/json"
                     },
                     body: JSON.stringify({
-                        user_id: getId,
+                        user_id: user.id,
                         drink_id: data.id
                     })})
                     .then(response => response.json())
@@ -98,6 +108,7 @@ function DrinkForm({setGetDrinkId, getDrinkId, getId, setUpdate, update, drinks,
                     })
                     setUpdate(false)
                 history.push('/feed')
+                history.push('/home')
             })
         }
     }

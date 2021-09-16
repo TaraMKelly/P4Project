@@ -1,32 +1,86 @@
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import { useEffect, useState } from 'react'
+import {useHistory} from 'react-router-dom'
 
-function DrinkCard({ setGetDrinkId, getId, setUpdate, deletedDrink, id, name, ingredients, instructions, img_url, custom }) {
+function DrinkCard({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, setUpdate, deletedDrink, id, name, ingredients, instructions, img_url, custom }) {
     const obj = { id: id, name: name, ingredients: ingredients, instructions: instructions, img_url: img_url, custom: custom }
     const [clicked, setClicked] = useState(true)
     const [userData, setUserData] = useState('')
     // const [canUpdate, setCanUpdate] = useState(false)
     const [likes, setLikes] = useState(0)
+    const [exists, setExists] = useState(false)
+    let history = useHistory();
+
+    const [user, setUser] = useState([])
+
+    useEffect(() => {
+        fetch('/me')
+            .then(response => response.json())
+            .then(data => setUser(data))
+        }, [])
+
 
     const addLikedDrink = {
+        id: null,
         name: name,
         ingredients: ingredients,
         instructions: instructions,
         img_url: img_url,
-        custom: true
+        custom: custom
     }
+
+    function isLiked(){
+        if(liked)
+            return true
+        else
+            return false
+    }
+
     function handleLikeClick(event) {
-        incrementLikes()
-        // fetch('/drinks', {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         Accept: "application/json"
-        //     },
-        //     body: JSON.stringify(addLikedDrink)
-        //     }).then(response => response.json())
-        //     .then(data => {console.log(data)})
-        //     console.log("POSTING!!!!!")
+        event.preventDefault()
+        setLiked(liked => !liked)
+        if(addLikedDrink.custom){
+            fetch('/user_drinks', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                },
+                body: JSON.stringify({
+                    user_id: user.id,
+                    drink_id: id
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+        }
+        else{
+        fetch('/drinks', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(addLikedDrink)
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data)
+                fetch('/user_drinks', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: JSON.stringify({
+                        user_id: user.id,
+                        drink_id: data.id
+                    })
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+            })
+        }
+        console.log("POSTING!!!!!")
     }
     function incrementLikes() {
         setLikes(likes + 1)
@@ -76,8 +130,8 @@ function DrinkCard({ setGetDrinkId, getId, setUpdate, deletedDrink, id, name, in
                 "Content-Type": "application/json"
             }
         }).then((r) => {
-            if (r.ok) {
-                deletedDrink(id);
+            if (r.ok && drinks) {
+                setDrinks(drinks.filter((drink) => drink.id !== id));
             }
         });
     }
@@ -99,7 +153,7 @@ function DrinkCard({ setGetDrinkId, getId, setUpdate, deletedDrink, id, name, in
             </Card.Content>
             <Card.Content extra>
                 <a>
-                    <Button circular icon='heart' onClick={handleLikeClick} />
+                    <Button type = "submit" icon="heart" onClick={handleLikeClick}/>
                     {`${likes} likes`}
                 </a>
                 <a>

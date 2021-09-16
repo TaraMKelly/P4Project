@@ -12,6 +12,8 @@ function Main() {
   const [update, setUpdate] = useState(false)
   const [getId, setGetId] = useState();
   const [getDrinkId, setGetDrinkId] = useState()
+  const [liked, setLiked] = useState(false)
+
 
 
   useEffect(() => {
@@ -19,23 +21,23 @@ function Main() {
       .then(response => response.json())
       .then(data => setDrinks(data))
   }, [])
+  // useEffect(() => {
+  //   fetch('/me')
+  //   .then(response => response.json())
+  //   .then(data => setGetId(data.id))
+  // }, [])
 
-  useEffect(() => {
-    fetch('/me')
-    .then(response => response.json())
-    .then(data => setGetId(data.id))
-  }, [])
 
-  console.log(drinks)
-  const filteredDrinks = drinks.filter((drink) => {
-    if(drink.name){
-      return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
-    }
-  })
-  //   if (drink.name) {
+  // console.log(drinks)
+  // const filteredDrinks = drinks.filter((drink) => {
+  //   if(drink.name){
   //     return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
   //   }
   // })
+  // //   if (drink.name) {
+  // //     return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
+  // //   }
+  // // })
 
   function deletedDrink(deletedDrinkId) {
     setDrinks(drinks.filter((drink) => drink.id !== deletedDrinkId))
@@ -50,7 +52,7 @@ function Main() {
     <>
       <Switch>
         <Route exact path="/home">
-          <UserContainer />
+          <UserContainer liked = {liked} setLiked = {setLiked} setGetDrinkId = {setGetDrinkId} setUpdate = {setUpdate} drinks = {drinks} setDrinks = {setDrinks}/>
         </Route>
 
 
@@ -60,7 +62,7 @@ function Main() {
 
 
         <Route exact path="/feed">
-          <DrinksContainer getDrinkId = {getDrinkId} setGetDrinkId = {setGetDrinkId} getId={getId} setGetId={setGetId} updatedDrink={updatedDrink} setUpdate={setUpdate} update={update} deletedDrink={deletedDrink} drinks={drinks} setDrinks={setDrinks} />
+          <DrinksContainer liked = {liked} setLiked = {setLiked} drinks = {drinks} setDrinks = {setDrinks} getDrinkId = {getDrinkId} setGetDrinkId = {setGetDrinkId} getId={getId} setGetId={setGetId} updatedDrink={updatedDrink} setUpdate={setUpdate} update={update} deletedDrink={deletedDrink} drinks={drinks} setDrinks={setDrinks} />
         </Route>
 
 

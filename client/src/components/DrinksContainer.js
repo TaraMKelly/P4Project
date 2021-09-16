@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Container } from 'semantic-ui-react'
 
 
-function DrinksContainer({ getDrinkId, setGetDrinkId, getId, setGetId, setUpdate, update, deletedDrink, updatedDrink, drinks, setDrinks }) {
+function DrinksContainer({ liked, setLiked, getDrinkId, setGetDrinkId, getId, setGetId, setUpdate, update, deletedDrink, updatedDrink, drinks, setDrinks }) {
 
 
   return (
@@ -12,7 +12,7 @@ function DrinksContainer({ getDrinkId, setGetDrinkId, getId, setGetId, setUpdate
     <Container>
       {update ? <DrinkForm getDrinkId={getDrinkId} setGetDrinkId={setGetDrinkId} getId={getId} setUpdate={setUpdate} update={update} drinks={drinks} setDrinks={setDrinks} /> : ""}
       <ContentBox>
-        <DrinksList getDrinkId={getDrinkId} setGetDrinkId={setGetDrinkId} getId={getId} setGetId={setGetId} setUpdate={setUpdate} update={update} deletedDrink={deletedDrink} updatedDrink={updatedDrink} drinks={drinks} setDrinks={setDrinks} />
+        <DrinksList liked = {liked} setLiked = {setLiked}  drinks = {drinks} setDrinks = {setDrinks} getDrinkId={getDrinkId} setGetDrinkId={setGetDrinkId} getId={getId} setGetId={setGetId} setUpdate={setUpdate} update={update} deletedDrink={deletedDrink} updatedDrink={updatedDrink} drinks={drinks} setDrinks={setDrinks} />
       </ContentBox>
     </Container>
   );
