@@ -1,7 +1,19 @@
 class UserDrinksController < ApplicationController
+
+    def index
+        userdrinks = UserDrink.all
+        render json: userdrinks
+    end
+
     def create
         userdrinks = UserDrink.create!(user_drinks_params)
         render json: userdrinks, status: :created
+    end
+
+    def destroy
+        userdrink = UserDrink.find(params[:id])
+        userdrink.destroy
+        head :no_content
     end
 
     private
