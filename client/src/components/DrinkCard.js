@@ -158,14 +158,12 @@ function DrinkCard({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, se
                 </a>
                 <a>
                     <button name={id} onClick={handleDeleteDrink} >
-                        Delete
-                        {/* <Icon name='delete' /> */}
+                        ❌
                     </button>
                     <button name={id} onClick={handleUpdateDrink} >
                         Update
                     </button>
                 </a>
-                {{ custom } ? <Icon name='glass martini' /> : null}
             </Card.Content>
         </Card>
     )
