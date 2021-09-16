@@ -71,7 +71,6 @@ function DrinkForm({setGetDrinkId, getDrinkId, getId, setUpdate, update, drinks,
                     })
                     console.log(data)
                 history.push('/feed')
-                history.push('/home')
                 fetch('/user_drinks', {
                     method: "POST",
                     headers: {
@@ -108,7 +107,6 @@ function DrinkForm({setGetDrinkId, getDrinkId, getId, setUpdate, update, drinks,
                     })
                     setUpdate(false)
                 history.push('/feed')
-                history.push('/home')
             })
         }
     }

@@ -29,16 +29,17 @@ function DrinkCard({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, se
         custom: custom
     }
 
-    function isLiked(){
-        if(liked)
-            return true
-        else
-            return false
-    }
+    // function isLiked(){
+    //     if(liked)
+    //         return true
+    //     else
+    //         return false
+    // }
 
     function handleLikeClick(event) {
         event.preventDefault()
-        setLiked(liked => !liked)
+        console.log(liked)
+
         if(addLikedDrink.custom){
             fetch('/user_drinks', {
                 method: "POST",
