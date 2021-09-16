@@ -5,7 +5,7 @@ function DrinkCard({ setGetDrinkId, getId, setUpdate, deletedDrink, id, name, in
     const obj = { id: id, name: name, ingredients: ingredients, instructions: instructions, img_url: img_url, custom: custom }
     const [clicked, setClicked] = useState(true)
     const [userData, setUserData] = useState('')
-    const [canUpdate, setCanUpdate] = useState(false)
+    // const [canUpdate, setCanUpdate] = useState(false)
     const [likes, setLikes] = useState(0)
 
     const addLikedDrink = {
@@ -37,22 +37,22 @@ function DrinkCard({ setGetDrinkId, getId, setUpdate, deletedDrink, id, name, in
         setUpdate(true)
     }
 
-    useEffect(() => {
-        fetch(`/drinks/${id}`)
-            .then(response => response.json())
-            .then(data => {
-                data.users.map((user) => {
-                    if (user.id === getId) {
-                        return setCanUpdate(true)
-                    }
-                })
-            })
-    }, [])
+    // useEffect(() => {
+    //     fetch(`/drinks/${id}`)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             data.users.map((user) => {
+    //                 if (user.id === getId) {
+    //                     return setCanUpdate(true)
+    //                 }
+    //             })
+    //         })
+    // }, [getId])
 
     function handleImageClick(event) {
         setClicked(clicked => !clicked)
         if (clicked) {
-            fetch(`/drinks/${event.target.attributes.name.nodeValue}`)
+            fetch(`/drinks/${event.target.name}`)
                 .then(response => response.json())
                 .then(data => {
                     let usernames = ''
@@ -69,7 +69,7 @@ function DrinkCard({ setGetDrinkId, getId, setUpdate, deletedDrink, id, name, in
 
     function handleDeleteDrink(event) {
         console.log(event)
-        fetch(`/drinks/${event.target.attributes.name.nodeValue}`, {
+        fetch(`/drinks/${event.target.name}`, {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',
@@ -103,12 +103,13 @@ function DrinkCard({ setGetDrinkId, getId, setUpdate, deletedDrink, id, name, in
                     {`${likes} likes`}
                 </a>
                 <a>
-                    <Button name={id} onClick={handleDeleteDrink} icon>
-                        <Icon name='delete' />
-                    </Button>
-                    {canUpdate ? <Button name={id} onClick={handleUpdateDrink} icon>
+                    <button name={id} onClick={handleDeleteDrink} >
+                        Delete
+                        {/* <Icon name='delete' /> */}
+                    </button>
+                    <button name={id} onClick={handleUpdateDrink} >
                         Update
-                    </Button> : ""}
+                    </button>
                 </a>
                 {{ custom } ? <Icon name='glass martini' /> : null}
             </Card.Content>
