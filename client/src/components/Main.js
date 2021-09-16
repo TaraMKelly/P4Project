@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import SearchBar from './SearchBar'
 import UserContainer from './UserContainer'
 import DrinkForm from './DrinkForm'
+import StyledDrinkForm from './StyledDrinkForm'
 import DrinksContainer from './DrinksContainer'
 
 function Main() {
@@ -67,7 +68,8 @@ function Main() {
 
 
         <Route exact path="/create">
-          <DrinkForm getDrinkId = {getDrinkId} setGetDrinkId = {setGetDrinkId} getId = {getId} setUpdate = {setUpdate} update = {update} drinks={drinks} setDrinks={setDrinks} />
+          <StyledDrinkForm getDrinkId = {getDrinkId} setGetDrinkId = {setGetDrinkId} getId = {getId} setUpdate = {setUpdate} update = {update} drinks={drinks} setDrinks={setDrinks} />
+          {/* <DrinkForm getDrinkId = {getDrinkId} setGetDrinkId = {setGetDrinkId} getId = {getId} setUpdate = {setUpdate} update = {update} drinks={drinks} setDrinks={setDrinks} /> */}
         </Route>
         <Route path="*">
           <h1>404 not found</h1>

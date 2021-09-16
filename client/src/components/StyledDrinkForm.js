@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import '../styles/Form.css'
+import { Button, Input, FormField, Label, Error } from "../styles";
+import styled from "styled-components";
 
 
 function DrinkForm({ setGetDrinkId, getDrinkId, getId, setUpdate, update, drinks, setDrinks }) {
@@ -104,19 +105,43 @@ function DrinkForm({ setGetDrinkId, getDrinkId, getId, setUpdate, update, drinks
         }
     }
     return (
-        <div className="form-box">
+        <Wrapper>
+            <Logo>Share a drink</Logo>
             <form onSubmit={handleFormSubmit}>
-                <input type="text" name="name" value={addDrink.name} placeholder="name" onChange={handleNewDrink}></input>
-                <input type="text" name="ingredients" value={addDrink.ingredients} placeholder="ingredients" onChange={handleNewDrink}></input>
-                <input type="text" name="instructions" value={addDrink.instructions} placeholder="instructions" onChange={handleNewDrink}></input>
-                <input type="text" name="img_url" value={addDrink.img_url} placeholder="image url" onChange={handleNewDrink}></input>
+                <FormField>
+                    <Label>Drink Name</Label>
+                    <Input type="text" name="name" value={addDrink.name} placeholder="name" onChange={handleNewDrink} />
+                </FormField>
+                <FormField>
+                    <Label>Ingredients</Label>
+                    <Input type="text" name="ingredients" value={addDrink.ingredients} placeholder="ingredients" onChange={handleNewDrink} />
+                </FormField>
+                <FormField>
+                    <Label>Instructions</Label>
+                    <Input type="text" name="instructions" value={addDrink.instructions} placeholder="instructions" onChange={handleNewDrink} />
+                </FormField>
+                <FormField>
+                    <Label>Add a Picture</Label>
+                    <Input type="text" name="img_url" value={addDrink.img_url} placeholder="image url" onChange={handleNewDrink} />
+                </FormField>
                 <div>
                     <button type="submit" className="submit-input">Submit</button>
                 </div>
 
             </form>
-        </div>
+        </Wrapper>
     )
 }
+const Logo = styled.h1`
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 2rem;
+  color: black;
+  margin: 8px 0 16px;
+`;
+const Wrapper = styled.section`
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 16px;
+  `;
 
 export default DrinkForm
