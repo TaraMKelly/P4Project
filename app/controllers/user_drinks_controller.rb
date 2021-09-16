@@ -16,6 +16,10 @@ class UserDrinksController < ApplicationController
         head :no_content
     end
 
+    def delete
+        current_user.drinks.find_by(params[:drink_id])
+    end
+
     private
 
     def user_drinks_params
