@@ -1,7 +1,7 @@
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import { useEffect, useState } from 'react'
 
-function DrinkCard({ getDrinkId, setGetDrinkId, getId, setGetId, update, setUpdate, deletedDrink, id, updatedDrink, drinks, setDrinks, name, ingredients, instructions, img_url, custom }) {
+function DrinkCard({ setGetDrinkId, getId, setUpdate, deletedDrink, id, name, ingredients, instructions, img_url, custom }) {
     const obj = { id: id, name: name, ingredients: ingredients, instructions: instructions, img_url: img_url, custom: custom }
     const [clicked, setClicked] = useState(true)
     const [userData, setUserData] = useState('')
