@@ -1,6 +1,7 @@
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import { useEffect, useState } from 'react'
 import {useHistory} from 'react-router-dom'
+// import styled from "styled-components";
 
 function DrinkCardHome({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, setUpdate, deletedDrink, id, name, ingredients, instructions, img_url, custom }) {
     const obj = { id: id, name: name, ingredients: ingredients, instructions: instructions, img_url: img_url, custom: custom }
@@ -101,5 +102,14 @@ function DrinkCardHome({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId
     )
 
 }
+// const ContentBox = styled.div`
+//   display: flex;
+//   gap: 0.25rem;
+//   padding: 0.25rem;
+//   flex-wrap: wrap;
+//   align-items: center;
+//   grid-area: content;
+//   justify-content: center;
+// `;
 
 export default DrinkCardHome

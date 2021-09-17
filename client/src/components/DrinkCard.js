@@ -1,4 +1,4 @@
-import { Card, Icon, Image, Button } from 'semantic-ui-react'
+import { Card, Image, Button } from 'semantic-ui-react'
 import { useEffect, useState } from 'react'
 import {useHistory} from 'react-router-dom'
 
