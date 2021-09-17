@@ -64,19 +64,19 @@ function DrinkCard({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, se
             }).then(response => response.json())
             .then(data => {
                 console.log(data)
-                fetch('/user_drinks', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json"
-                    },
-                    body: JSON.stringify({
-                        user_id: user.id,
-                        drink_id: data.id
-                    })
-                })
-                .then(response => response.json())
-                .then(data => console.log(data))
+                // fetch('/user_drinks', {
+                //     method: "POST",
+                //     headers: {
+                //         "Content-Type": "application/json",
+                //         Accept: "application/json"
+                //     },
+                //     body: JSON.stringify({
+                //         user_id: user.id,
+                //         drink_id: data.id
+                //     })
+                // })
+                // .then(response => response.json())
+                // .then(data => console.log(data))
             })
         }
         console.log("POSTING!!!!!")

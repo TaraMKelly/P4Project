@@ -34,17 +34,17 @@ function DrinkCardHome({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId
 
     function handleDeleteDrink(event){
         event.preventDefault()
-        fetch(`http://localhost:3000/delete_user_drinks`, {
-            method: "POST", 
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            body: JSON.stringify({
-                drink_id: id
-            })
-        }).then(response => response.json())
-        .then(data => console.log(data))
+        // fetch(`http://localhost:3000/delete_user_drinks`, {
+        //     method: "POST", 
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         Accept: "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         drink_id: id
+        //     })
+        // }).then(response => response.json())
+        // .then(data => console.log(data))
         // .then(response => response.json())
         // .then(data => {
         //     const index = data.findIndex(userDrink => userDrink.user.id === user.id && userDrink.drink.id === id)
