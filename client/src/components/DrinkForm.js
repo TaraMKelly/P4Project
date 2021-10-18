@@ -71,18 +71,18 @@ function DrinkForm({getDrinkId, setUpdate, update, drinks, setDrinks}){
                     })
                     console.log(data)
                 history.push('/feed')
-                fetch('/user_drinks', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json"
-                    },
-                    body: JSON.stringify({
-                        user_id: user.id,
-                        drink_id: data.id
-                    })})
-                    .then(response => response.json())
-                    .then(console.log(data))
+                // fetch('/user_drinks', {
+                //     method: "POST",
+                //     headers: {
+                //         "Content-Type": "application/json",
+                //         Accept: "application/json"
+                //     },
+                //     body: JSON.stringify({
+                //         user_id: user.id,
+                //         drink_id: data.id
+                //     })})
+                //     .then(response => response.json())
+                //     .then(console.log(data))
                 })
         }
         else{

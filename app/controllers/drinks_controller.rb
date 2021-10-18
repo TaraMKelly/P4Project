@@ -13,6 +13,7 @@ class DrinksController < ApplicationController
   
     def create
       drink = Drink.create!(drink_params)
+      current_user.drinks << drink
       render json: drink, status: :created
     rescue ACtiveRecord::RecordInvalid => invalid 
       render json: {error: "invalid!"}, status: 422
