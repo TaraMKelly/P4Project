@@ -11,9 +11,7 @@ function SearchBar({ searchValue, setSearchValue }) {
         setNewSearchValue(event.target.value)
     }
 
-    // function handleSearch(event) {
-    //     setSearchValue(event.target.value)
-    // }
+
 
     const handleButtonSearch = (e) => {
         e.preventDefault()

@@ -1,11 +1,10 @@
-import { Container, Grid } from 'semantic-ui-react'
+import { Container} from 'semantic-ui-react'
 import { Card } from 'semantic-ui-react'
 import { useState, useEffect } from 'react'
-import DrinkCard from './DrinkCard'
 import DrinkCardHome from './DrinkCardHome'
 
 
-function UserCard({liked, setLiked, setGetDrinkId, setUpdate, drinks, setDrinks}) {
+function UserCard({setGetDrinkId, setUpdate, drinks, setDrinks}) {
   const [user, setUser] = useState([])
 
   useEffect(() => {

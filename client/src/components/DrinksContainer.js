@@ -17,12 +17,7 @@ function DrinksContainer({ liked, setLiked, getDrinkId, setGetDrinkId, getId, se
     </Container>
   );
 }
-// const Grid = styled.div`
-//   display: grid
-//   grid-template-columns: repeat(3, 1fr);
-//   grid-template-rows: 50px 50px
-//   grid-gap: 5px
-// `;
+
 const ContentBox = styled.div`
   display: flex;
   gap: 0.25rem;

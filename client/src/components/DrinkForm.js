@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
 
-function DrinkForm({setGetDrinkId, getDrinkId, getId, setUpdate, update, drinks, setDrinks}){
+function DrinkForm({getDrinkId, setUpdate, update, drinks, setDrinks}){
     let history = useHistory();
     console.log(update)
     const [user, setUser] = useState([])

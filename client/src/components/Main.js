@@ -1,6 +1,5 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Switch, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react'
-// import UserCard from './UserCard'
 import SearchBar from './SearchBar'
 import UserContainer from './UserContainer'
 import DrinkForm from './DrinkForm'
@@ -21,23 +20,6 @@ function Main() {
       .then(response => response.json())
       .then(data => setDrinks(data))
   }, [])
-  // useEffect(() => {
-  //   fetch('/me')
-  //   .then(response => response.json())
-  //   .then(data => setGetId(data.id))
-  // }, [])
-
-
-  // console.log(drinks)
-  // const filteredDrinks = drinks.filter((drink) => {
-  //   if(drink.name){
-  //     return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
-  //   }
-  // })
-  // //   if (drink.name) {
-  // //     return drink.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
-  // //   }
-  // // })
 
   function deletedDrink(deletedDrinkId) {
     setDrinks(drinks.filter((drink) => drink.id !== deletedDrinkId))

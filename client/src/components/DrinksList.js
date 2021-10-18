@@ -1,6 +1,4 @@
 import DrinkCard from "./DrinkCard"
-import { Grid } from 'semantic-ui-react'
-import {useState, useEffect} from 'react'
 
 function DrinksList({ liked, setLiked, getDrinkId, setGetDrinkId, getId, setGetId, update, setUpdate, drinks, updatedDrink, setDrinks, deletedDrink}){
 
