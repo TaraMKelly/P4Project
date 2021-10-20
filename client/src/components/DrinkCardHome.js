@@ -3,11 +3,7 @@ import { useEffect, useState } from 'react'
 import {useHistory} from 'react-router-dom'
 // import styled from "styled-components";
 
-<<<<<<< HEAD
-function DrinkCard({id, name, ingredients, instructions, img_url, custom }) {
-=======
 function DrinkCardHome({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId, setUpdate, deletedDrink, id, name, ingredients, instructions, img_url, custom }) {
->>>>>>> f0624c24c422a475836c66e64f414bbd0263b1fc
     const obj = { id: id, name: name, ingredients: ingredients, instructions: instructions, img_url: img_url, custom: custom }
     const [clicked, setClicked] = useState(true)
     const [userData, setUserData] = useState('')
@@ -38,20 +34,6 @@ function DrinkCardHome({liked, setLiked, setGetDrinkId, setDrinks, drinks, getId
             })
         }).then(response => response.json())
         .then(data => console.log(data))
-        // .then(response => response.json())
-        // .then(data => {
-        //     const index = data.findIndex(userDrink => userDrink.user.id === user.id && userDrink.drink.id === id)
-        //     console.log(index)
-        //     if(index > -1){
-        //         fetch(`http://localhost:3000/user_drinks/${index}`, {
-        //             method: 'DELETE',
-        //             headers: {
-        //                 "Content-Type": "application/json",
-        //                 Accept: "application/json"
-        //             }
-        //         })
-        //     }
-        // })
     }
 
     function handleImageClick(event) {
