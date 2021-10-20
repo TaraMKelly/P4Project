@@ -2,7 +2,6 @@ import { BrowserRouter as Switch, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import SearchBar from './SearchBar'
 import UserContainer from './UserContainer'
-import DrinkForm from './DrinkForm'
 import StyledDrinkForm from './StyledDrinkForm'
 import DrinksContainer from './DrinksContainer'
 
